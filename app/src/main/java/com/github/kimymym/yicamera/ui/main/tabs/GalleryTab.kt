@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.main.tabs
+package com.github.kimymym.yicamera.ui.main.tabs
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -55,10 +55,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
+import com.github.kimymym.yicamera.R
 import com.github.kimymym.yicamera.data.model.CameraMediaItem
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -104,7 +106,7 @@ fun GalleryTab(
                     // 다중 선택 모드 헤더
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "${selectedNames.size}개 선택됨",
+                            text = stringResource(R.string.gallery_selected_count, selectedNames.size),
                             color = Color(0xFF00E5FF),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
@@ -113,7 +115,7 @@ fun GalleryTab(
 
                     Row {
                         TextButton(onClick = onSelectAll) {
-                            Text("전체 선택", color = Color.White, fontSize = 13.sp)
+                            Text(stringResource(R.string.btn_select_all), color = Color.White, fontSize = 13.sp)
                         }
                         Spacer(modifier = Modifier.width(4.dp))
                         TextButton(
@@ -122,14 +124,14 @@ fun GalleryTab(
                                 onClearSelect()
                             }
                         ) {
-                            Text("취소", color = Color(0xFFAAAAAA), fontSize = 13.sp)
+                            Text(stringResource(R.string.btn_cancel), color = Color(0xFFAAAAAA), fontSize = 13.sp)
                         }
                     }
                 } else {
                     // 일반 모드 헤더
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "미디어 갤러리",
+                            text = stringResource(R.string.gallery_title),
                             color = Color.White,
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
@@ -147,7 +149,7 @@ fun GalleryTab(
                         IconButton(onClick = onRefresh) {
                             Icon(
                                 imageVector = Icons.Default.Refresh,
-                                contentDescription = "새로고침",
+                                contentDescription = stringResource(R.string.btn_refresh),
                                 tint = Color(0xFF00E5FF)
                             )
                         }
@@ -160,7 +162,7 @@ fun GalleryTab(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.CheckCircleOutline,
-                                contentDescription = "선택 모드",
+                                contentDescription = stringResource(R.string.btn_select_mode),
                                 tint = Color.White
                             )
                         }
@@ -178,7 +180,7 @@ fun GalleryTab(
                         CircularProgressIndicator(color = Color(0xFF00E5FF))
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "카메라 미디어 목록을 불러오는 중...",
+                            text = stringResource(R.string.gallery_loading),
                             color = Color.LightGray,
                             fontSize = 14.sp
                         )
@@ -198,7 +200,7 @@ fun GalleryTab(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "카메라 SD 카드에 저장된 사진/영상이 없습니다.",
+                            text = stringResource(R.string.gallery_empty),
                             color = Color.Gray,
                             fontSize = 14.sp
                         )
@@ -207,7 +209,7 @@ fun GalleryTab(
                             onClick = onRefresh,
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2C2C2C))
                         ) {
-                            Text("새로고침", color = Color(0xFF00E5FF))
+                            Text(stringResource(R.string.btn_refresh), color = Color(0xFF00E5FF))
                         }
                     }
                 }
@@ -264,13 +266,13 @@ fun GalleryTab(
             ) {
                 Icon(
                     imageVector = Icons.Default.FileDownload,
-                    contentDescription = "다운로드",
+                    contentDescription = stringResource(R.string.desc_download),
                     tint = Color.Black,
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "다운로드 (${selectedNames.size}개)",
+                    text = stringResource(R.string.gallery_btn_download_count, selectedNames.size),
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp
@@ -385,7 +387,7 @@ private fun MediaGridItem(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "영상",
+                        contentDescription = stringResource(R.string.desc_video),
                         tint = Color(0xFFFF3D00),
                         modifier = Modifier.size(13.dp)
                     )
@@ -422,7 +424,7 @@ private fun MediaGridItem(
                 if (isSelected) {
                     Icon(
                         imageVector = Icons.Default.CheckCircle,
-                        contentDescription = "선택됨",
+                        contentDescription = stringResource(R.string.desc_selected),
                         tint = Color(0xFF00E5FF),
                         modifier = Modifier
                             .size(22.dp)
@@ -431,7 +433,7 @@ private fun MediaGridItem(
                 } else {
                     Icon(
                         imageVector = Icons.Default.RadioButtonUnchecked,
-                        contentDescription = "선택 안 됨",
+                        contentDescription = stringResource(R.string.desc_not_selected),
                         tint = Color(0xCCFFFFFF),
                         modifier = Modifier.size(22.dp)
                     )

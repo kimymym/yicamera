@@ -36,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -43,6 +44,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.github.kimymym.yicamera.R
 import com.github.kimymym.yicamera.data.model.CameraDeviceState
 import com.github.kimymym.yicamera.data.model.CameraMediaItem
 import com.github.kimymym.yicamera.data.model.ConnectionStatus
@@ -189,8 +191,8 @@ fun MainScreen(
                 NavigationBarItem(
                     selected = (selectedTab == 0),
                     onClick = { selectedTab = 0 },
-                    icon = { Icon(Icons.Default.CameraAlt, contentDescription = "라이브 프리뷰") },
-                    label = { Text("라이브 프리뷰") },
+                    icon = { Icon(Icons.Default.CameraAlt, contentDescription = stringResource(R.string.tab_live_preview)) },
+                    label = { Text(stringResource(R.string.tab_live_preview)) },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = Color.Black,
                         selectedTextColor = Color(0xFF00E5FF),
@@ -209,8 +211,8 @@ fun MainScreen(
                             onRefreshGallery()
                         }
                     },
-                    icon = { Icon(Icons.Default.PhotoLibrary, contentDescription = "갤러리") },
-                    label = { Text("갤러리") },
+                    icon = { Icon(Icons.Default.PhotoLibrary, contentDescription = stringResource(R.string.tab_gallery)) },
+                    label = { Text(stringResource(R.string.tab_gallery)) },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = Color.Black,
                         selectedTextColor = Color(0xFF00E5FF),
@@ -224,8 +226,8 @@ fun MainScreen(
                 NavigationBarItem(
                     selected = (selectedTab == 2),
                     onClick = { selectedTab = 2 },
-                    icon = { Icon(Icons.Default.Settings, contentDescription = "설정") },
-                    label = { Text("설정") },
+                    icon = { Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.tab_settings)) },
+                    label = { Text(stringResource(R.string.tab_settings)) },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = Color.Black,
                         selectedTextColor = Color(0xFF00E5FF),
@@ -290,8 +292,8 @@ fun MainScreen(
     if (showStopRecordDialog) {
         AlertDialog(
             onDismissRequest = { showStopRecordDialog = false },
-            title = { Text("동영상 녹화 중", color = Color.White) },
-            text = { Text("현재 동영상을 녹화 중입니다. 녹화를 중지하시겠습니까?", color = Color(0xFFDDDDDD)) },
+            title = { Text(stringResource(R.string.dialog_recording_title), color = Color.White) },
+            text = { Text(stringResource(R.string.dialog_recording_message), color = Color(0xFFDDDDDD)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -300,12 +302,12 @@ fun MainScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF3D00))
                 ) {
-                    Text("녹화 중지", color = Color.White)
+                    Text(stringResource(R.string.btn_stop_recording), color = Color.White)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showStopRecordDialog = false }) {
-                    Text("계속 녹화", color = Color.LightGray)
+                    Text(stringResource(R.string.btn_continue_recording), color = Color.LightGray)
                 }
             },
             containerColor = Color(0xFF242424)
@@ -354,12 +356,16 @@ fun MainScreen(
                         modifier = Modifier.size(24.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("SD 카드 포맷 안내", color = Color.White)
+                    Text(stringResource(R.string.dialog_sd_format_guide_title), color = Color.White)
                 }
             },
             text = {
                 Text(
-                    text = sdFormatDialogReason ?: "카메라에서 SD 카드 오류(코드: -28)가 감지되어 촬영을 진행할 수 없습니다.\n\n정상적인 사진 및 동영상 저장을 위해 [설정] > [SD 카드 포맷]을 진행해주세요.",
+                    text = if (sdFormatDialogReason != null) {
+                        stringResource(R.string.dialog_sd_format_guide_dynamic_msg, sdFormatDialogReason)
+                    } else {
+                        stringResource(R.string.dialog_sd_format_guide_default_msg)
+                    },
                     color = Color(0xFFDDDDDD),
                     fontSize = 14.sp,
                     lineHeight = 20.sp
@@ -373,12 +379,12 @@ fun MainScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00E5FF))
                 ) {
-                    Text("설정으로 이동", color = Color.Black)
+                    Text(stringResource(R.string.btn_go_to_settings), color = Color.Black)
                 }
             },
             dismissButton = {
                 OutlinedButton(onClick = onDismissSdFormatDialog) {
-                    Text("닫기", color = Color.White)
+                    Text(stringResource(R.string.btn_close), color = Color.White)
                 }
             },
             containerColor = Color(0xFF242424)
@@ -389,7 +395,7 @@ fun MainScreen(
     if (cameraState.isFormattingSdCard) {
         AlertDialog(
             onDismissRequest = { /* 포맷 중 임의 닫기 방지 */ },
-            title = { Text("SD 카드 포맷 중", color = Color.White) },
+            title = { Text(stringResource(R.string.dialog_sd_formatting_title), color = Color.White) },
             text = {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -402,7 +408,7 @@ fun MainScreen(
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                     Text(
-                        text = "카메라 SD 카드를 포맷하고 있습니다...\n잠시만 기다려주세요.",
+                        text = stringResource(R.string.dialog_sd_formatting_message),
                         color = Color.LightGray,
                         fontSize = 14.sp,
                         lineHeight = 20.sp
@@ -416,20 +422,21 @@ fun MainScreen(
 
     // SD 카드 포맷 완료 / 실패 안내 다이얼로그
     cameraState.formatResult?.let { result ->
+        val isSuccess = result.contains("성공") || result.contains("successfully", ignoreCase = true)
         AlertDialog(
             onDismissRequest = onClearFormatResult,
             title = {
                 Text(
-                    text = if (result.contains("성공")) "포맷 완료" else "포맷 실패",
-                    color = if (result.contains("성공")) Color(0xFF00E676) else Color(0xFFFF5252)
+                    text = if (isSuccess) stringResource(R.string.dialog_sd_format_success_title) else stringResource(R.string.dialog_sd_format_failed_title),
+                    color = if (isSuccess) Color(0xFF00E676) else Color(0xFFFF5252)
                 )
             },
             text = {
                 Text(
-                    text = if (result.contains("성공")) {
-                        "$result\n이제 사진 및 동영상을 정상적으로 촬영하실 수 있습니다."
+                    text = if (isSuccess) {
+                        stringResource(R.string.settings_sd_format_success) + stringResource(R.string.dialog_sd_format_success_sub)
                     } else {
-                        result
+                        stringResource(R.string.settings_sd_format_failed, result)
                     },
                     color = Color(0xFFDDDDDD),
                     lineHeight = 20.sp
@@ -439,10 +446,10 @@ fun MainScreen(
                 Button(
                     onClick = onClearFormatResult,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (result.contains("성공")) Color(0xFF00E5FF) else Color(0xFF333333)
+                        containerColor = if (isSuccess) Color(0xFF00E5FF) else Color(0xFF333333)
                     )
                 ) {
-                    Text("확인", color = if (result.contains("성공")) Color.Black else Color.White)
+                    Text(stringResource(R.string.btn_confirm), color = if (isSuccess) Color.Black else Color.White)
                 }
             },
             containerColor = Color(0xFF242424)

@@ -143,8 +143,7 @@ class MainViewModel @Inject constructor(
                 || msg.contains("-28") || msg.contains("-14")
 
         if (isFormatNeeded) {
-            val codeStr = if (rval != null) "코드: $rval" else "-28"
-            _sdFormatDialogReason.value = "카메라에서 SD 카드 오류($codeStr)가 감지되어 촬영을 진행할 수 없습니다.\n\n정상적인 사진 및 동영상 저장을 위해 [설정] > [SD 카드 포맷]을 진행해주세요."
+            _sdFormatDialogReason.value = if (rval != null) "code: $rval" else "-28"
             _showSdFormatDialog.value = true
         }
     }

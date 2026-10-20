@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.connect
+package com.github.kimymym.yicamera.ui.connect
 
 import android.content.Intent
 import android.provider.Settings
@@ -37,12 +37,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.github.kimymym.yicamera.R
 
 @Composable
 fun ConnectRoute(
@@ -108,7 +110,7 @@ fun ConnectScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "샤오미 YI 액션 카메라",
+                text = stringResource(R.string.connect_camera_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = Color.White,
                 fontWeight = FontWeight.Bold
@@ -117,7 +119,7 @@ fun ConnectScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "카메라 Wi-Fi에 연결한 후 아래 버튼을 눌러주세요.",
+                text = stringResource(R.string.connect_camera_subtitle),
                 color = Color(0xFFAAAAAA),
                 fontSize = 14.sp,
                 textAlign = TextAlign.Center
@@ -133,17 +135,14 @@ fun ConnectScreen(
             ) {
                 Column(modifier = Modifier.padding(18.dp)) {
                     Text(
-                        text = "연결 방법 안내",
+                        text = stringResource(R.string.connect_guide_title),
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 15.sp
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "1. YI 카메라 측면 Wi-Fi 버튼을 눌러 켭니다.\n" +
-                                "2. 스마트폰 Wi-Fi 설정에서 'YD...'를 선택합니다.\n" +
-                                "3. 기본 비밀번호: 1234567890\n" +
-                                "4. 연결 완료 후 아래 [카메라 연결 시작] 버튼을 누릅니다.",
+                        text = stringResource(R.string.connect_guide_steps),
                         color = Color(0xFFCCCCCC),
                         fontSize = 13.sp,
                         lineHeight = 20.sp
@@ -167,7 +166,7 @@ fun ConnectScreen(
                     tint = Color(0xFF00E5FF)
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                Text("스마트폰 Wi-Fi 설정 열기", color = Color(0xFF00E5FF))
+                Text(stringResource(R.string.open_wifi_settings), color = Color(0xFF00E5FF))
             }
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -177,11 +176,15 @@ fun ConnectScreen(
                 is ConnectUiState.Connecting -> {
                     CircularProgressIndicator(color = Color(0xFF00E5FF))
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text("카메라와 통신 세션을 맺는 중...", color = Color.White, fontSize = 13.sp)
+                    Text(stringResource(R.string.connecting_session), color = Color.White, fontSize = 13.sp)
                 }
                 is ConnectUiState.Error -> {
                     Text(
-                        text = uiState.message,
+                        text = if (uiState.message.contains("실패") || uiState.message.contains("failed", ignoreCase = true)) {
+                            stringResource(R.string.error_camera_connect_failed)
+                        } else {
+                            uiState.message
+                        },
                         color = Color(0xFFFF5252),
                         fontSize = 13.sp,
                         textAlign = TextAlign.Center
@@ -193,7 +196,7 @@ fun ConnectScreen(
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier.fillMaxWidth().height(48.dp)
                     ) {
-                        Text("다시 시도", color = Color.Black, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_retry), color = Color.Black, fontWeight = FontWeight.Bold)
                     }
                 }
                 else -> {
@@ -203,7 +206,7 @@ fun ConnectScreen(
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier.fillMaxWidth().height(48.dp)
                     ) {
-                        Text("카메라 연결 시작", color = Color.Black, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_start_connection), color = Color.Black, fontWeight = FontWeight.Bold)
                     }
                 }
             }

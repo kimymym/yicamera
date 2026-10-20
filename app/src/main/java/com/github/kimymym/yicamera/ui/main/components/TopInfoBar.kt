@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.main.components
+package com.github.kimymym.yicamera.ui.main.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,8 +22,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.github.kimymym.yicamera.R
 import com.github.kimymym.yicamera.data.model.BatteryInfo
 import com.github.kimymym.yicamera.data.model.StorageInfo
 
@@ -59,7 +61,7 @@ fun TopInfoBar(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "YI Action Cam",
+                text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.titleMedium,
                 color = Color.White
             )
@@ -70,16 +72,16 @@ fun TopInfoBar(
             // SD카드 용량
             Icon(
                 imageVector = Icons.Default.SdCard,
-                contentDescription = "SD Card",
+                contentDescription = stringResource(R.string.desc_sd_card),
                 tint = Color(0xFFB0BEC5),
                 modifier = Modifier.size(16.dp)
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = when {
-                    storage.errorMessage != null -> "SD 오류"
+                    storage.errorMessage != null -> stringResource(R.string.top_bar_sd_error)
                     storage.freeMb > 0 -> storage.freeGbFormatted
-                    else -> "SD 확인중"
+                    else -> stringResource(R.string.top_bar_sd_checking)
                 },
                 style = MaterialTheme.typography.labelMedium,
                 color = if (storage.errorMessage != null) Color(0xFFFF5252) else Color.White,
@@ -91,7 +93,7 @@ fun TopInfoBar(
             // 배터리
             Icon(
                 imageVector = Icons.Default.BatteryFull,
-                contentDescription = "Battery",
+                contentDescription = stringResource(R.string.desc_battery),
                 tint = if (battery.percentage <= 20) Color(0xFFFF5252) else Color(0xFF00E676),
                 modifier = Modifier.size(18.dp)
             )

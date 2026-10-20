@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name">YI Action Cam</string>
+
+    <!-- Connect Screen -->
+    <string name="connect_camera">카메라 연결</string>
+    <string name="camera_wifi_guide">YI 카메라 Wi-Fi(YD...)에 연결해 주세요.</string>
+    <string name="connect_camera_title">샤오미 YI 액션 카메라</string>
+    <string name="connect_camera_subtitle">카메라 Wi-Fi에 연결한 후 아래 버튼을 눌러주세요.</string>
+    <string name="connect_guide_title">연결 방법 안내</string>
+    <string name="connect_guide_steps">1. YI 카메라 측면 Wi-Fi 버튼을 눌러 켭니다.\n2. 스마트폰 Wi-Fi 설정에서 \'YD...\'를 선택합니다.\n3. 기본 비밀번호: 1234567890\n4. 연결 완료 후 아래 [카메라 연결 시작] 버튼을 누릅니다.</string>
+    <string name="open_wifi_settings">스마트폰 Wi-Fi 설정 열기</string>
+    <string name="connecting_session">카메라와 통신 세션을 맺는 중...</string>
+    <string name="btn_retry">다시 시도</string>
+    <string name="btn_start_connection">카메라 연결 시작</string>
+    <string name="error_camera_connect_failed">카메라 연결에 실패했습니다.</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_live_preview">라이브 프리뷰</string>
+    <string name="tab_gallery">갤러리</string>
+    <string name="tab_settings">설정</string>
+
+    <!-- Main Screen & Dialogs -->
+    <string name="dialog_recording_title">동영상 녹화 중</string>
+    <string name="dialog_recording_message">현재 동영상을 녹화 중입니다. 녹화를 중지하시겠습니까?</string>
+    <string name="btn_stop_recording">녹화 중지</string>
+    <string name="btn_continue_recording">계속 녹화</string>
+    <string name="dialog_sd_format_guide_title">SD 카드 포맷 안내</string>
+    <string name="dialog_sd_format_guide_default_msg">카메라에서 SD 카드 오류(코드: -28)가 감지되어 촬영을 진행할 수 없습니다.\n\n정상적인 사진 및 동영상 저장을 위해 [설정] &gt; [SD 카드 포맷]을 진행해주세요.</string>
+    <string name="dialog_sd_format_guide_dynamic_msg">카메라에서 SD 카드 오류(%1$s)가 감지되어 촬영을 진행할 수 없습니다.\n\n정상적인 사진 및 동영상 저장을 위해 [설정] &gt; [SD 카드 포맷]을 진행해주세요.</string>
+    <string name="btn_go_to_settings">설정으로 이동</string>
+    <string name="btn_close">닫기</string>
+    <string name="dialog_sd_formatting_title">SD 카드 포맷 중</string>
+    <string name="dialog_sd_formatting_message">카메라 SD 카드를 포맷하고 있습니다...\n잠시만 기다려주세요.</string>
+    <string name="dialog_sd_format_success_title">포맷 완료</string>
+    <string name="dialog_sd_format_failed_title">포맷 실패</string>
+    <string name="dialog_sd_format_success_sub">\n이제 사진 및 동영상을 정상적으로 촬영하실 수 있습니다.</string>
+    <string name="btn_confirm">확인</string>
+    <string name="btn_cancel">취소</string>
+
+    <!-- Live Preview Tab -->
+    <string name="desc_flip_rotation">영상 Flip 회전</string>
+    <string name="desc_toggle_grid">보조선 토글</string>
+    <string name="mode_photo">사진</string>
+    <string name="mode_video">동영상</string>
+
+    <!-- Gallery Tab -->
+    <string name="gallery_selected_count">%1$d개 선택됨</string>
+    <string name="btn_select_all">전체 선택</string>
+    <string name="gallery_title">미디어 갤러리</string>
+    <string name="btn_refresh">새로고침</string>
+    <string name="btn_select_mode">선택 모드</string>
+    <string name="gallery_loading">카메라 미디어 목록을 불러오는 중...</string>
+    <string name="gallery_empty">카메라 SD 카드에 저장된 사진/영상이 없습니다.</string>
+    <string name="gallery_btn_download_count">다운로드 (%1$d개)</string>
+    <string name="desc_video">영상</string>
+    <string name="desc_selected">선택됨</string>
+    <string name="desc_not_selected">선택 안 됨</string>
+    <string name="desc_download">다운로드</string>
+
+    <!-- Settings Tab -->
+    <string name="settings_sd_format_title">SD 카드 포맷</string>
+    <string name="settings_sd_format_warning">SD 카드에 저장된 모든 사진과 동영상이 영구적으로 삭제됩니다.\n계속 진행하시겠습니까?</string>
+    <string name="btn_execute_format">포맷 실행</string>
+    <string name="settings_wifi_change_success_title">Wi-Fi 변경 완료</string>
+    <string name="settings_wifi_change_success_msg">Wi-Fi 설정이 성공적으로 변경되었습니다.\n카메라 Wi-Fi가 재부팅되면 스마트폰 Wi-Fi 설정에서 새 비밀번호로 다시 연결해주세요.</string>
+    <string name="settings_section_capture">촬영 설정</string>
+    <string name="setting_video_resolution">동영상 해상도</string>
+    <string name="setting_photo_resolution">사진 해상도</string>
+    <string name="setting_video_flip">영상 상하 반전 (Flip)</string>
+    <string name="setting_flip_on">켜짐 (180°)</string>
+    <string name="setting_flip_off">꺼짐 (기본)</string>
+    <string name="settings_section_system">카메라 시스템 설정</string>
+    <string name="setting_buzzer_volume">비프음 볼륨</string>
+    <string name="setting_led_mode">LED 인디케이터</string>
+    <string name="setting_auto_power_off">자동 전원 끄기</string>
+    <string name="settings_section_wifi">Wi-Fi 및 네트워크 설정</string>
+    <string name="settings_password_label">비밀번호: %1$s</string>
+    <string name="settings_not_set">미설정</string>
+    <string name="btn_change">변경</string>
+    <string name="settings_section_storage">메모리 관리</string>
+    <string name="storage_format_both">가용: %1$s / 전체: %2$s</string>
+    <string name="storage_format_free_only">가용 용량: %1$s</string>
+    <string name="storage_checking">용량 정보 확인 중...</string>
+    <string name="storage_free_percent">%1$d%% 여유</string>
+    <string name="settings_sd_reset_data">모든 데이터 초기화</string>
+    <string name="btn_format">포맷</string>
+    <string name="settings_disconnect">카메라 연결 해제</string>
+    <string name="settings_loading_options">옵션 로딩중...</string>
+
+    <!-- Wi-Fi Config Dialog -->
+    <string name="wifi_dialog_title">카메라 Wi-Fi 설정 변경</string>
+    <string name="wifi_dialog_desc">카메라의 Wi-Fi 이름(SSID)과 접속 비밀번호를 변경합니다.</string>
+    <string name="wifi_dialog_ssid_label">Wi-Fi 이름 (SSID)</string>
+    <string name="wifi_dialog_pwd_label">비밀번호 (최소 8자)</string>
+    <string name="desc_hide_password">비밀번호 숨기기</string>
+    <string name="desc_show_password">비밀번호 보기</string>
+    <string name="wifi_dialog_warning">주의: 변경 후 카메라 AP가 재시작되어 연결이 끊어집니다. 스마트폰 Wi-Fi 설정에서 새 비밀번호로 다시 연결해주세요.</string>
+    <string name="wifi_err_empty_ssid">Wi-Fi 이름을 입력해주세요.</string>
+    <string name="wifi_err_short_pwd">비밀번호는 최소 8자 이상이어야 합니다.</string>
+    <string name="wifi_btn_changing">변경 중...</string>
+    <string name="wifi_btn_apply">변경 적용</string>
+
+    <!-- Connection Lost Dialog -->
+    <string name="desc_connection_lost">연결 끊김</string>
+    <string name="dialog_conn_lost_title">카메라 연결 끊김</string>
+    <string name="dialog_conn_lost_message">카메라와의 Wi-Fi 또는 소켓 연결이 끊어졌습니다.\n카메라 전원 및 Wi-Fi 연결을 확인해주세요.</string>
+    <string name="btn_go_to_connect_screen">대기화면으로</string>
+    <string name="btn_reconnect">재연결</string>
+
+    <!-- Download Progress Dialog -->
+    <string name="desc_complete">완료</string>
+    <string name="dialog_download_completed_title">다운로드 완료</string>
+    <string name="dialog_download_completed_message">총 %1$d개의 파일이 기기 갤러리에 저장되었습니다.</string>
+    <string name="desc_error">오류</string>
+    <string name="dialog_download_error_title">다운로드 중 오류</string>
+    <string name="dialog_downloading_progress">미디어 다운로드 중 (%1$d/%2$d)</string>
+
+    <!-- Top Info Bar -->
+    <string name="top_bar_sd_error">SD 오류</string>
+    <string name="top_bar_sd_checking">SD 확인중</string>
+    <string name="desc_sd_card">SD 카드</string>
+    <string name="desc_battery">배터리</string>
+    <string name="desc_close">닫기</string>
+
+    <!-- Additional Messages -->
+    <string name="settings_sd_format_success">SD 카드가 성공적으로 포맷되었습니다.</string>
+    <string name="settings_sd_format_failed">SD 카드 포맷 실패 (%1$s)</string>
+    <string name="download_failed_item">다운로드 실패: %1$s</string>
+    <string name="wifi_error_change_failed">Wi-Fi 설정 변경 실패</string>
+</resources>

@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.main.components
+package com.github.kimymym.yicamera.ui.main.components
 
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -48,6 +49,7 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import coil.compose.SubcomposeAsyncImage
+import com.github.kimymym.yicamera.R
 import com.github.kimymym.yicamera.data.model.CameraMediaItem
 
 @OptIn(UnstableApi::class)
@@ -146,7 +148,7 @@ fun FullscreenMediaViewer(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "닫기",
+                        contentDescription = stringResource(R.string.desc_close),
                         tint = Color.White,
                         modifier = Modifier.size(20.dp)
                     )
@@ -187,7 +189,7 @@ fun FullscreenMediaViewer(
                 ) {
                     Icon(
                         imageVector = Icons.Default.FileDownload,
-                        contentDescription = "다운로드",
+                        contentDescription = stringResource(R.string.desc_download),
                         tint = Color.White,
                         modifier = Modifier.size(20.dp)
                     )

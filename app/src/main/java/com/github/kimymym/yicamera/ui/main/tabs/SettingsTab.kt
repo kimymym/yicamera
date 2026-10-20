@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.main.tabs
+package com.github.kimymym.yicamera.ui.main.tabs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -49,10 +49,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.github.kimymym.yicamera.R
 import com.github.kimymym.yicamera.data.model.CameraSettings
 import com.github.kimymym.yicamera.data.model.StorageInfo
 
@@ -84,12 +86,12 @@ fun SettingsTab(
                         modifier = Modifier.size(24.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("SD 카드 포맷", color = Color.White)
+                    Text(stringResource(R.string.settings_sd_format_title), color = Color.White)
                 }
             },
             text = {
                 Text(
-                    text = "SD 카드에 저장된 모든 사진과 동영상이 영구적으로 삭제됩니다.\n계속 진행하시겠습니까?",
+                    text = stringResource(R.string.settings_sd_format_warning),
                     color = Color(0xFFDDDDDD),
                     fontSize = 14.sp,
                     lineHeight = 20.sp
@@ -103,18 +105,19 @@ fun SettingsTab(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F))
                 ) {
-                    Text("포맷 실행", color = Color.White)
+                    Text(stringResource(R.string.btn_execute_format), color = Color.White)
                 }
             },
             dismissButton = {
                 OutlinedButton(onClick = { showFormatDialog = false }) {
-                    Text("취소", color = Color.White)
+                    Text(stringResource(R.string.btn_cancel), color = Color.White)
                 }
             },
             containerColor = Color(0xFF242424)
         )
     }
 
+    val wifiSuccessMessage = stringResource(R.string.settings_wifi_change_success_msg)
     if (showWifiDialog) {
         WifiConfigDialog(
             currentSsid = settings.wifiSsid,
@@ -124,7 +127,7 @@ fun SettingsTab(
                 onChangeWifiConfig(newSsid, newPwd, {
                     onDone()
                     showWifiDialog = false
-                    wifiChangeSuccessMsg = "Wi-Fi 설정이 성공적으로 변경되었습니다.\n카메라 Wi-Fi가 재부팅되면 스마트폰 Wi-Fi 설정에서 새 비밀번호로 다시 연결해주세요."
+                    wifiChangeSuccessMsg = wifiSuccessMessage
                 }, onErr)
             }
         )
@@ -133,19 +136,22 @@ fun SettingsTab(
     if (wifiChangeSuccessMsg != null) {
         AlertDialog(
             onDismissRequest = { wifiChangeSuccessMsg = null },
-            title = { Text("Wi-Fi 변경 완료", color = Color(0xFF00E5FF)) },
+            title = { Text(stringResource(R.string.settings_wifi_change_success_title), color = Color(0xFF00E5FF)) },
             text = { Text(wifiChangeSuccessMsg ?: "", color = Color(0xFFDDDDDD), lineHeight = 20.sp) },
             confirmButton = {
                 Button(
                     onClick = { wifiChangeSuccessMsg = null },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00E5FF))
                 ) {
-                    Text("확인", color = Color.Black)
+                    Text(stringResource(R.string.btn_confirm), color = Color.Black)
                 }
             },
             containerColor = Color(0xFF242424)
         )
     }
+
+    val flipOnLabel = stringResource(R.string.setting_flip_on)
+    val flipOffLabel = stringResource(R.string.setting_flip_off)
 
     LazyColumn(
         modifier = modifier
@@ -157,7 +163,7 @@ fun SettingsTab(
         // 1. 촬영 설정
         item {
             Text(
-                text = "촬영 설정",
+                text = stringResource(R.string.settings_section_capture),
                 style = MaterialTheme.typography.titleMedium,
                 color = Color(0xFF00E5FF),
                 modifier = Modifier.padding(bottom = 4.dp)
@@ -168,25 +174,25 @@ fun SettingsTab(
             ) {
                 Column {
                     SettingDropdownItem(
-                        title = "동영상 해상도",
+                        title = stringResource(R.string.setting_video_resolution),
                         currentValue = settings.videoResolution,
                         options = settings.videoResolutionOptions,
                         onSelect = { onSettingChange("video_resolution", it) }
                     )
                     HorizontalDivider(color = Color(0xFF2C2C2C))
                     SettingDropdownItem(
-                        title = "사진 해상도",
+                        title = stringResource(R.string.setting_photo_resolution),
                         currentValue = settings.photoResolution,
                         options = settings.photoResolutionOptions,
                         onSelect = { onSettingChange("photo_size", it) }
                     )
                     HorizontalDivider(color = Color(0xFF2C2C2C))
                     SettingDropdownItem(
-                        title = "영상 상하 반전 (Flip)",
-                        currentValue = if (settings.isVideoRotateOn) "켜짐 (180°)" else "꺼짐 (기본)",
-                        options = listOf("꺼짐 (기본)", "켜짐 (180°)"),
+                        title = stringResource(R.string.setting_video_flip),
+                        currentValue = if (settings.isVideoRotateOn) flipOnLabel else flipOffLabel,
+                        options = listOf(flipOffLabel, flipOnLabel),
                         onSelect = { selected ->
-                            val value = if (selected.startsWith("켜짐")) "on" else "off"
+                            val value = if (selected == flipOnLabel) "on" else "off"
                             onSettingChange("video_rotate", value)
                         }
                     )
@@ -197,7 +203,7 @@ fun SettingsTab(
         // 2. 카메라 시스템 설정
         item {
             Text(
-                text = "카메라 시스템 설정",
+                text = stringResource(R.string.settings_section_system),
                 style = MaterialTheme.typography.titleMedium,
                 color = Color(0xFF00E5FF),
                 modifier = Modifier.padding(bottom = 4.dp)
@@ -208,21 +214,21 @@ fun SettingsTab(
             ) {
                 Column {
                     SettingDropdownItem(
-                        title = "비프음 볼륨",
+                        title = stringResource(R.string.setting_buzzer_volume),
                         currentValue = settings.buzzerVolume,
                         options = settings.buzzerVolumeOptions,
                         onSelect = { onSettingChange("buzzer_volume", it) }
                     )
                     HorizontalDivider(color = Color(0xFF2C2C2C))
                     SettingDropdownItem(
-                        title = "LED 인디케이터",
+                        title = stringResource(R.string.setting_led_mode),
                         currentValue = settings.ledMode,
                         options = settings.ledModeOptions,
                         onSelect = { onSettingChange("led_mode", it) }
                     )
                     HorizontalDivider(color = Color(0xFF2C2C2C))
                     SettingDropdownItem(
-                        title = "자동 전원 끄기",
+                        title = stringResource(R.string.setting_auto_power_off),
                         currentValue = settings.autoPowerOff,
                         options = settings.autoPowerOffOptions,
                         onSelect = { onSettingChange("auto_power_off", it) }
@@ -234,7 +240,7 @@ fun SettingsTab(
         // 3. Wi-Fi 및 네트워크 설정
         item {
             Text(
-                text = "Wi-Fi 및 네트워크 설정",
+                text = stringResource(R.string.settings_section_wifi),
                 style = MaterialTheme.typography.titleMedium,
                 color = Color(0xFF00E5FF),
                 modifier = Modifier.padding(bottom = 4.dp)
@@ -263,8 +269,9 @@ fun SettingsTab(
                                     color = Color.White,
                                     fontSize = 15.sp
                                 )
+                                val pwdText = if (settings.wifiPassword.isNotEmpty()) "••••••••" else stringResource(R.string.settings_not_set)
                                 Text(
-                                    text = "비밀번호: " + if (settings.wifiPassword.isNotEmpty()) "••••••••" else "미설정",
+                                    text = stringResource(R.string.settings_password_label, pwdText),
                                     color = Color(0xFF888888),
                                     fontSize = 12.sp
                                 )
@@ -275,7 +282,7 @@ fun SettingsTab(
                             onClick = { showWifiDialog = true },
                             shape = RoundedCornerShape(8.dp)
                         ) {
-                            Text("변경", color = Color(0xFF00E5FF))
+                            Text(stringResource(R.string.btn_change), color = Color(0xFF00E5FF))
                         }
                     }
                 }
@@ -285,7 +292,7 @@ fun SettingsTab(
         // 4. 메모리 관리 (SD 카드 포맷)
         item {
             Text(
-                text = "메모리 관리",
+                text = stringResource(R.string.settings_section_storage),
                 style = MaterialTheme.typography.titleMedium,
                 color = Color(0xFF00E5FF),
                 modifier = Modifier.padding(bottom = 4.dp)
@@ -329,19 +336,20 @@ fun SettingsTab(
                     ) {
                         Text(
                             text = if (storage.totalMb > 0) {
-                                "가용: ${storage.freeGbFormatted} / 전체: ${storage.totalGbFormatted}"
+                                stringResource(R.string.storage_format_both, storage.freeGbFormatted, storage.totalGbFormatted)
                             } else if (storage.freeMb > 0) {
-                                "가용 용량: ${storage.freeGbFormatted}"
+                                stringResource(R.string.storage_format_free_only, storage.freeGbFormatted)
                             } else {
-                                "용량 정보 확인 중..."
+                                stringResource(R.string.storage_checking)
                             },
                             color = Color(0xFF00E5FF),
                             fontSize = 14.sp
                         )
 
                         if (storage.totalMb > 0) {
+                            val freePct = ((1f - storage.usageRatio) * 100).toInt()
                             Text(
-                                text = "${((1f - storage.usageRatio) * 100).toInt()}% 여유",
+                                text = stringResource(R.string.storage_free_percent, freePct),
                                 color = Color(0xFFAAAAAA),
                                 fontSize = 12.sp
                             )
@@ -380,8 +388,8 @@ fun SettingsTab(
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
-                                Text("SD 카드 포맷", color = Color.White, fontSize = 15.sp)
-                                Text("모든 데이터 초기화", color = Color(0xFF888888), fontSize = 12.sp)
+                                Text(stringResource(R.string.settings_sd_format_title), color = Color.White, fontSize = 15.sp)
+                                Text(stringResource(R.string.settings_sd_reset_data), color = Color(0xFF888888), fontSize = 12.sp)
                             }
                         }
 
@@ -396,16 +404,17 @@ fun SettingsTab(
                                 onClick = { showFormatDialog = true },
                                 shape = RoundedCornerShape(8.dp)
                             ) {
-                                Text("포맷", color = Color(0xFFFF5252))
+                                Text(stringResource(R.string.btn_format), color = Color(0xFFFF5252))
                             }
                         }
                     }
 
                     if (formatResult != null) {
                         Spacer(modifier = Modifier.height(10.dp))
+                        val isSuccess = formatResult.contains("성공") || formatResult.contains("successfully", ignoreCase = true)
                         Text(
-                            text = formatResult,
-                            color = if (formatResult.contains("성공")) Color(0xFF00E676) else Color(0xFFFF5252),
+                            text = if (isSuccess) stringResource(R.string.settings_sd_format_success) else stringResource(R.string.settings_sd_format_failed, formatResult),
+                            color = if (isSuccess) Color(0xFF00E676) else Color(0xFFFF5252),
                             fontSize = 13.sp
                         )
                     }
@@ -424,11 +433,11 @@ fun SettingsTab(
             ) {
                 Icon(
                     imageVector = Icons.Default.PowerSettingsNew,
-                    contentDescription = "Disconnect",
+                    contentDescription = stringResource(R.string.settings_disconnect),
                     tint = Color(0xFFFF5252)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("카메라 연결 해제", color = Color.White, fontSize = 15.sp)
+                Text(stringResource(R.string.settings_disconnect), color = Color.White, fontSize = 15.sp)
             }
         }
     }
@@ -467,7 +476,7 @@ private fun SettingDropdownItem(
             ) {
                 if (options.isEmpty()) {
                     DropdownMenuItem(
-                        text = { Text("옵션 로딩중...", color = Color.Gray) },
+                        text = { Text(stringResource(R.string.settings_loading_options), color = Color.Gray) },
                         onClick = { expanded = false }
                     )
                 } else {
@@ -504,6 +513,9 @@ private fun WifiConfigDialog(
     var isLoading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
+    val emptySsidError = stringResource(R.string.wifi_err_empty_ssid)
+    val shortPwdError = stringResource(R.string.wifi_err_short_pwd)
+
     AlertDialog(
         onDismissRequest = { if (!isLoading) onDismiss() },
         title = {
@@ -515,13 +527,13 @@ private fun WifiConfigDialog(
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("카메라 Wi-Fi 설정 변경", color = Color.White)
+                Text(stringResource(R.string.wifi_dialog_title), color = Color.White)
             }
         },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
-                    text = "카메라의 Wi-Fi 이름(SSID)과 접속 비밀번호를 변경합니다.",
+                    text = stringResource(R.string.wifi_dialog_desc),
                     color = Color(0xFFCCCCCC),
                     fontSize = 13.sp
                 )
@@ -532,7 +544,7 @@ private fun WifiConfigDialog(
                         ssid = it
                         errorMessage = null
                     },
-                    label = { Text("Wi-Fi 이름 (SSID)") },
+                    label = { Text(stringResource(R.string.wifi_dialog_ssid_label)) },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
@@ -551,14 +563,14 @@ private fun WifiConfigDialog(
                         password = it
                         errorMessage = null
                     },
-                    label = { Text("비밀번호 (최소 8자)") },
+                    label = { Text(stringResource(R.string.wifi_dialog_pwd_label)) },
                     singleLine = true,
                     visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(
                                 imageVector = if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                                contentDescription = if (passwordVisible) "비밀번호 숨기기" else "비밀번호 보기",
+                                contentDescription = if (passwordVisible) stringResource(R.string.desc_hide_password) else stringResource(R.string.desc_show_password),
                                 tint = Color.Gray
                             )
                         }
@@ -590,7 +602,7 @@ private fun WifiConfigDialog(
                     )
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
-                        text = "주의: 변경 후 카메라 AP가 재시작되어 연결이 끊어집니다. 스마트폰 Wi-Fi 설정에서 새 비밀번호로 다시 연결해주세요.",
+                        text = stringResource(R.string.wifi_dialog_warning),
                         color = Color(0xFFFFE082),
                         fontSize = 12.sp,
                         lineHeight = 16.sp
@@ -612,11 +624,11 @@ private fun WifiConfigDialog(
                     val trimmedSsid = ssid.trim()
                     val trimmedPwd = password.trim()
                     if (trimmedSsid.isEmpty()) {
-                        errorMessage = "Wi-Fi 이름을 입력해주세요."
+                        errorMessage = emptySsidError
                         return@Button
                     }
                     if (trimmedPwd.length < 8) {
-                        errorMessage = "비밀번호는 최소 8자 이상이어야 합니다."
+                        errorMessage = shortPwdError
                         return@Button
                     }
                     isLoading = true
@@ -636,9 +648,9 @@ private fun WifiConfigDialog(
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("변경 중...", color = Color.Black)
+                    Text(stringResource(R.string.wifi_btn_changing), color = Color.Black)
                 } else {
-                    Text("변경 적용", color = Color.Black)
+                    Text(stringResource(R.string.wifi_btn_apply), color = Color.Black)
                 }
             }
         },
@@ -647,7 +659,7 @@ private fun WifiConfigDialog(
                 onClick = onDismiss,
                 enabled = !isLoading
             ) {
-                Text("취소", color = Color.White)
+                Text(stringResource(R.string.btn_cancel), color = Color.White)
             }
         },
         containerColor = Color(0xFF242424)

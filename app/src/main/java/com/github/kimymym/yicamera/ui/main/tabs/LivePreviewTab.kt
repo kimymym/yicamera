@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.main.tabs
+package com.github.kimymym.yicamera.ui.main.tabs
 
 import android.app.Activity
 import android.view.WindowManager
@@ -42,8 +42,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.github.kimymym.yicamera.R
 import com.github.kimymym.yicamera.data.model.ShootMode
 import com.github.kimymym.yicamera.ui.main.components.ExoPlayerView
 import com.github.kimymym.yicamera.ui.main.components.GridOverlay
@@ -109,7 +111,7 @@ fun LivePreviewTab(
             ) {
                 Icon(
                     imageVector = Icons.Default.ScreenRotation,
-                    contentDescription = "영상 Flip 회전",
+                    contentDescription = stringResource(R.string.desc_flip_rotation),
                     tint = if (isVideoRotateOn) Color(0xFF00E5FF) else Color.White,
                     modifier = Modifier.size(20.dp)
                 )
@@ -124,7 +126,7 @@ fun LivePreviewTab(
             ) {
                 Icon(
                     imageVector = Icons.Default.GridOn,
-                    contentDescription = "Toggle Grid",
+                    contentDescription = stringResource(R.string.desc_toggle_grid),
                     tint = if (showGrid) Color(0xFF00E5FF) else Color.White,
                     modifier = Modifier.size(20.dp)
                 )
@@ -183,7 +185,7 @@ fun LivePreviewTab(
             ) {
                 // 사진 모드
                 ModeButton(
-                    title = "사진",
+                    title = stringResource(R.string.mode_photo),
                     icon = Icons.Default.CameraAlt,
                     isSelected = (shootMode == ShootMode.PHOTO),
                     onClick = { onModeSwitch(ShootMode.PHOTO) }
@@ -193,7 +195,7 @@ fun LivePreviewTab(
 
                 // 동영상 모드
                 ModeButton(
-                    title = "동영상",
+                    title = stringResource(R.string.mode_video),
                     icon = Icons.Default.Videocam,
                     isSelected = (shootMode == ShootMode.VIDEO),
                     onClick = { onModeSwitch(ShootMode.VIDEO) }

@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.main.components
+package com.github.kimymym.yicamera.ui.main.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -25,9 +25,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.github.kimymym.yicamera.R
 import com.github.kimymym.yicamera.data.model.DownloadProgress
 
 @Composable
@@ -53,19 +55,19 @@ fun DownloadProgressDialog(
                 if (progress.isCompleted) {
                     Icon(
                         imageVector = Icons.Default.CheckCircle,
-                        contentDescription = "완료",
+                        contentDescription = stringResource(R.string.desc_complete),
                         tint = Color(0xFF00E676),
                         modifier = Modifier.size(48.dp)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "다운로드 완료",
+                        text = stringResource(R.string.dialog_download_completed_title),
                         style = MaterialTheme.typography.titleMedium,
                         color = Color.White
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "총 ${progress.total}개의 파일이 기기 갤러리에 저장되었습니다.",
+                        text = stringResource(R.string.dialog_download_completed_message, progress.total),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color(0xFFAAAAAA)
                     )
@@ -76,18 +78,18 @@ fun DownloadProgressDialog(
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("확인", color = Color.Black)
+                        Text(stringResource(R.string.btn_confirm), color = Color.Black)
                     }
                 } else if (progress.error != null) {
                     Icon(
                         imageVector = Icons.Default.Error,
-                        contentDescription = "오류",
+                        contentDescription = stringResource(R.string.desc_error),
                         tint = Color(0xFFFF5252),
                         modifier = Modifier.size(48.dp)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "다운로드 중 오류",
+                        text = stringResource(R.string.dialog_download_error_title),
                         style = MaterialTheme.typography.titleMedium,
                         color = Color.White
                     )
@@ -104,11 +106,11 @@ fun DownloadProgressDialog(
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("닫기", color = Color.White)
+                        Text(stringResource(R.string.btn_close), color = Color.White)
                     }
                 } else {
                     Text(
-                        text = "미디어 다운로드 중 (${progress.current}/${progress.total})",
+                        text = stringResource(R.string.dialog_downloading_progress, progress.current, progress.total),
                         style = MaterialTheme.typography.titleMedium,
                         color = Color.White
                     )

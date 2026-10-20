@@ -1,7 +1,130 @@
 <resources>
     <string name="app_name">YI Action Cam</string>
-    <string name="tab_live_preview">라이브 프리뷰</string>
-    <string name="tab_settings">설정</string>
-    <string name="connect_camera">카메라 연결</string>
-    <string name="camera_wifi_guide">YI 카메라 Wi-Fi(YICamera_XXXXXX)에 연결해 주세요.</string>
+
+    <!-- Connect Screen -->
+    <string name="connect_camera">Connect Camera</string>
+    <string name="camera_wifi_guide">Please connect to YI camera Wi-Fi (YD...).</string>
+    <string name="connect_camera_title">Xiaomi YI Action Camera</string>
+    <string name="connect_camera_subtitle">Connect to the camera Wi-Fi and tap the button below.</string>
+    <string name="connect_guide_title">Connection Guide</string>
+    <string name="connect_guide_steps">1. Press the Wi-Fi button on the side of the YI camera.\n2. Select \'YD...\' in smartphone Wi-Fi settings.\n3. Default password: 1234567890\n4. Once connected, tap the [Start Camera Connection] button below.</string>
+    <string name="open_wifi_settings">Open Smartphone Wi-Fi Settings</string>
+    <string name="connecting_session">Establishing communication session with camera...</string>
+    <string name="btn_retry">Retry</string>
+    <string name="btn_start_connection">Start Camera Connection</string>
+    <string name="error_camera_connect_failed">Failed to connect to the camera.</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_live_preview">Live Preview</string>
+    <string name="tab_gallery">Gallery</string>
+    <string name="tab_settings">Settings</string>
+
+    <!-- Main Screen & Dialogs -->
+    <string name="dialog_recording_title">Recording in Progress</string>
+    <string name="dialog_recording_message">Video is currently recording. Do you want to stop recording?</string>
+    <string name="btn_stop_recording">Stop Recording</string>
+    <string name="btn_continue_recording">Keep Recording</string>
+    <string name="dialog_sd_format_guide_title">SD Card Format Guide</string>
+    <string name="dialog_sd_format_guide_default_msg">An SD card error (code: -28) was detected from the camera. Shooting cannot proceed.\n\nPlease go to [Settings] &gt; [Format SD Card] to ensure normal photo and video storage.</string>
+    <string name="dialog_sd_format_guide_dynamic_msg">An SD card error (%1$s) was detected from the camera. Shooting cannot proceed.\n\nPlease go to [Settings] &gt; [Format SD Card] to ensure normal photo and video storage.</string>
+    <string name="btn_go_to_settings">Go to Settings</string>
+    <string name="btn_close">Close</string>
+    <string name="dialog_sd_formatting_title">Formatting SD Card</string>
+    <string name="dialog_sd_formatting_message">Formatting the camera SD card...\nPlease wait a moment.</string>
+    <string name="dialog_sd_format_success_title">Format Completed</string>
+    <string name="dialog_sd_format_failed_title">Format Failed</string>
+    <string name="dialog_sd_format_success_sub">\nYou can now take photos and record videos normally.</string>
+    <string name="btn_confirm">OK</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Live Preview Tab -->
+    <string name="desc_flip_rotation">Toggle Video Flip</string>
+    <string name="desc_toggle_grid">Toggle Grid</string>
+    <string name="mode_photo">Photo</string>
+    <string name="mode_video">Video</string>
+
+    <!-- Gallery Tab -->
+    <string name="gallery_selected_count">%1$d Selected</string>
+    <string name="btn_select_all">Select All</string>
+    <string name="gallery_title">Media Gallery</string>
+    <string name="btn_refresh">Refresh</string>
+    <string name="btn_select_mode">Select Mode</string>
+    <string name="gallery_loading">Loading camera media list...</string>
+    <string name="gallery_empty">No photos or videos saved on camera SD card.</string>
+    <string name="gallery_btn_download_count">Download (%1$d)</string>
+    <string name="desc_video">Video</string>
+    <string name="desc_selected">Selected</string>
+    <string name="desc_not_selected">Not selected</string>
+    <string name="desc_download">Download</string>
+
+    <!-- Settings Tab -->
+    <string name="settings_sd_format_title">Format SD Card</string>
+    <string name="settings_sd_format_warning">All photos and videos stored on the SD card will be permanently deleted.\nDo you wish to proceed?</string>
+    <string name="btn_execute_format">Execute Format</string>
+    <string name="settings_wifi_change_success_title">Wi-Fi Updated</string>
+    <string name="settings_wifi_change_success_msg">Wi-Fi settings have been updated successfully.\nOnce the camera Wi-Fi reboots, reconnect with the new password in your smartphone Wi-Fi settings.</string>
+    <string name="settings_section_capture">Capture Settings</string>
+    <string name="setting_video_resolution">Video Resolution</string>
+    <string name="setting_photo_resolution">Photo Resolution</string>
+    <string name="setting_video_flip">Video Flip (180°)</string>
+    <string name="setting_flip_on">On (180°)</string>
+    <string name="setting_flip_off">Off (Default)</string>
+    <string name="settings_section_system">Camera System Settings</string>
+    <string name="setting_buzzer_volume">Buzzer Volume</string>
+    <string name="setting_led_mode">LED Indicator</string>
+    <string name="setting_auto_power_off">Auto Power Off</string>
+    <string name="settings_section_wifi">Wi-Fi &amp; Network Settings</string>
+    <string name="settings_password_label">Password: %1$s</string>
+    <string name="settings_not_set">Not set</string>
+    <string name="btn_change">Change</string>
+    <string name="settings_section_storage">Storage Management</string>
+    <string name="storage_format_both">Free: %1$s / Total: %2$s</string>
+    <string name="storage_format_free_only">Free: %1$s</string>
+    <string name="storage_checking">Checking storage info...</string>
+    <string name="storage_free_percent">%1$d%% Free</string>
+    <string name="settings_sd_reset_data">Reset All Data</string>
+    <string name="btn_format">Format</string>
+    <string name="settings_disconnect">Disconnect Camera</string>
+    <string name="settings_loading_options">Loading options...</string>
+
+    <!-- Wi-Fi Config Dialog -->
+    <string name="wifi_dialog_title">Change Camera Wi-Fi Settings</string>
+    <string name="wifi_dialog_desc">Change the camera Wi-Fi name (SSID) and access password.</string>
+    <string name="wifi_dialog_ssid_label">Wi-Fi Name (SSID)</string>
+    <string name="wifi_dialog_pwd_label">Password (Min. 8 chars)</string>
+    <string name="desc_hide_password">Hide password</string>
+    <string name="desc_show_password">Show password</string>
+    <string name="wifi_dialog_warning">Warning: Changing settings will restart the camera AP and disconnect your device. Please reconnect using the new password in your smartphone Wi-Fi settings.</string>
+    <string name="wifi_err_empty_ssid">Please enter a Wi-Fi name.</string>
+    <string name="wifi_err_short_pwd">Password must be at least 8 characters long.</string>
+    <string name="wifi_btn_changing">Updating...</string>
+    <string name="wifi_btn_apply">Apply Changes</string>
+
+    <!-- Connection Lost Dialog -->
+    <string name="desc_connection_lost">Connection Lost</string>
+    <string name="dialog_conn_lost_title">Camera Connection Lost</string>
+    <string name="dialog_conn_lost_message">The Wi-Fi or socket connection with the camera was lost.\nPlease check camera power and Wi-Fi connection.</string>
+    <string name="btn_go_to_connect_screen">To Connect Screen</string>
+    <string name="btn_reconnect">Reconnect</string>
+
+    <!-- Download Progress Dialog -->
+    <string name="desc_complete">Completed</string>
+    <string name="dialog_download_completed_title">Download Completed</string>
+    <string name="dialog_download_completed_message">A total of %1$d files have been saved to your device gallery.</string>
+    <string name="desc_error">Error</string>
+    <string name="dialog_download_error_title">Download Error</string>
+    <string name="dialog_downloading_progress">Downloading media (%1$d/%2$d)</string>
+
+    <!-- Top Info Bar -->
+    <string name="top_bar_sd_error">SD Error</string>
+    <string name="top_bar_sd_checking">Checking SD</string>
+    <string name="desc_sd_card">SD Card</string>
+    <string name="desc_battery">Battery</string>
+    <string name="desc_close">Close</string>
+
+    <!-- Additional Messages -->
+    <string name="settings_sd_format_success">SD card was successfully formatted.</string>
+    <string name="settings_sd_format_failed">SD card format failed (%1$s)</string>
+    <string name="download_failed_item">Failed to download: %1$s</string>
+    <string name="wifi_error_change_failed">Failed to change Wi-Fi settings</string>
 </resources>

@@ -1,4 +1,4 @@
-﻿package com.github.kimymym.yicamera.ui.main.components
+package com.github.kimymym.yicamera.ui.main.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,10 +24,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.github.kimymym.yicamera.R
 
 @Composable
 fun ConnectionLostDialog(
@@ -51,7 +53,7 @@ fun ConnectionLostDialog(
             ) {
                 Icon(
                     imageVector = Icons.Default.WifiOff,
-                    contentDescription = "연결 끊김",
+                    contentDescription = stringResource(R.string.desc_connection_lost),
                     tint = Color(0xFFFF5252),
                     modifier = Modifier.size(48.dp)
                 )
@@ -59,7 +61,7 @@ fun ConnectionLostDialog(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "카메라 연결 끊김",
+                    text = stringResource(R.string.dialog_conn_lost_title),
                     style = MaterialTheme.typography.titleLarge,
                     color = Color.White
                 )
@@ -67,7 +69,7 @@ fun ConnectionLostDialog(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "카메라와의 Wi-Fi 또는 소켓 연결이 끊어졌습니다.\n카메라 전원 및 Wi-Fi 연결을 확인해주세요.",
+                    text = stringResource(R.string.dialog_conn_lost_message),
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFFAAAAAA),
                     textAlign = TextAlign.Center
@@ -82,7 +84,7 @@ fun ConnectionLostDialog(
                         enabled = !isReconnecting,
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        Text("대기화면으로", color = Color.White)
+                        Text(stringResource(R.string.btn_go_to_connect_screen), color = Color.White)
                     }
 
                     Spacer(modifier = Modifier.width(12.dp))
@@ -101,7 +103,7 @@ fun ConnectionLostDialog(
                                 color = Color.Black
                             )
                         } else {
-                            Text("재연결", color = Color.Black)
+                            Text(stringResource(R.string.btn_reconnect), color = Color.Black)
                         }
                     }
                 }
