@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 샤오미 YI 액션캠 사설 IP (192.168.42.1) 평문 HTTP 및 RTSP 통신 허용 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.42.1</domain>
+        <domain includeSubdomains="true">192.168.42.*</domain>
+    </domain-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
